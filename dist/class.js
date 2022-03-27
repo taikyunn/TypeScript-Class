@@ -25,7 +25,7 @@ class Person {
     }
 }
 // インスタンスの生成。
-const tom = new Person("Tom", 40);
+const tom = new Person("Tom", 40, 'men');
 // メソッドを使用する方法
 tom.greeting();
 tom.incrementAge();
@@ -41,3 +41,18 @@ anotherTom.anotherGreeting();
 // classを作る型(インスタンス)を表すことができる
 // 今回の場合はPersonという型を作ることができる
 let person2;
+// 初期化の方法を簡素化する方法
+class Person1 {
+    // fieldの記述は不要
+    // constructor関数の引数にprivate pr public field名: 型のみで定義できる　
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age += 1;
+    }
+}
+const Tim = new Person1("Tim", 24);
+Tim.incrementAge();
+console.log(Tim);
