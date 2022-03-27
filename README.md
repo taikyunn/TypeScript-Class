@@ -1,2 +1,2 @@
 # TypeScript-Class
- ** classの学習 **
+classの学習
