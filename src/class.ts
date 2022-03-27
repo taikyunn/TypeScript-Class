@@ -5,14 +5,20 @@ class Person {
   name: string;
   // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
   private age: number;
+  // fieldに対してreadonly修飾子を与えることも可能
+  readonly id: number = 1;
+  private readonly email: string = 'test.com';
 
   // constructor関数を使用することで初期値を設定することができる。
   constructor(initName: string, initAge: number, initGender: string) {
     this.name = initName;
     this.age = initAge;
     this.gender = initGender;
+    // constructor: 初期化
+    // readonly修飾子を与えているものはconstructor関数内では書き換えできる。constructor外では不可
+    this.id = 2;
   }
-
+ 
   // メソッドの書き方
   // thisにも型をつけることができる。すると呼び出し先でも型チェックが行われる。
   greeting(this: {name: string}) {
@@ -57,8 +63,9 @@ let person2: Person;
 // 初期化の方法を簡素化する方法
 class Person1 {
   // fieldの記述は不要
-  // constructor関数の引数にprivate pr public field名: 型のみで定義できる　
-  constructor(public name: string, private age: number) {
+  // constructor関数の引数にprivate pr public field名: 型のみで定義できる
+  // readonlyを与えることで、読み込みのみできるようにする
+  constructor(public readonly name: string, private age: number) {
   }
   incrementAge() {
     this.age += 1;
@@ -68,3 +75,8 @@ class Person1 {
 const Tim = new Person1("Tim", 24);
 Tim.incrementAge();
 console.log(Tim);
+
+// クラスの継承には、extends 継承したいクラス名で継承できる。
+class Teacher extends Person {
+}
+const teacher = new Teacher("Dom", 30, "men");

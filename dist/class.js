@@ -3,9 +3,15 @@
 class Person {
     // constructor関数を使用することで初期値を設定することができる。
     constructor(initName, initAge, initGender) {
+        // fieldに対してreadonly修飾子を与えることも可能
+        this.id = 1;
+        this.email = 'test.com';
         this.name = initName;
         this.age = initAge;
         this.gender = initGender;
+        // constructor: 初期化
+        // readonly修飾子を与えているものはconstructor関数内では書き換えできる。constructor外では不可
+        this.id = 2;
     }
     // メソッドの書き方
     // thisにも型をつけることができる。すると呼び出し先でも型チェックが行われる。
@@ -44,7 +50,8 @@ let person2;
 // 初期化の方法を簡素化する方法
 class Person1 {
     // fieldの記述は不要
-    // constructor関数の引数にprivate pr public field名: 型のみで定義できる　
+    // constructor関数の引数にprivate pr public field名: 型のみで定義できる
+    // readonlyを与えることで、読み込みのみできるようにする
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -56,3 +63,7 @@ class Person1 {
 const Tim = new Person1("Tim", 24);
 Tim.incrementAge();
 console.log(Tim);
+// クラスの継承には、extends 継承したいクラス名で継承できる。
+class Teacher extends Person {
+}
+const teacher = new Teacher("Dom", 30, "men");
