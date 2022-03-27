@@ -2,9 +2,10 @@
 // classの生成
 class Person {
     // constructor関数を使用することで初期値を設定することができる。
-    constructor(initName, initAge) {
+    constructor(initName, initAge, initGender) {
         this.name = initName;
         this.age = initAge;
+        this.gender = initGender;
     }
     // メソッドの書き方
     // thisにも型をつけることができる。すると呼び出し先でも型チェックが行われる。
@@ -18,10 +19,13 @@ class Person {
     incrementAge() {
         this.age += 1;
     }
+    // 関数にprivate修飾子をつけることでクラス外からアクセスできなくすることも可能
+    incrementAge1() {
+        this.age += 1;
+    }
 }
 // インスタンスの生成。
 const tom = new Person("Tom", 40);
-console.log(tom);
 // メソッドを使用する方法
 tom.greeting();
 tom.incrementAge();

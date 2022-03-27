@@ -1,13 +1,16 @@
 // classの生成
 class Person {
+  // 何も修飾子を書いていない場合は、public修飾子が与えられている。明示的に与えてもok
+  public gender: string;
   name: string;
   // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
   private age: number;
 
   // constructor関数を使用することで初期値を設定することができる。
-  constructor(initName: string, initAge: number) {
+  constructor(initName: string, initAge: number, initGender: string) {
     this.name = initName;
     this.age = initAge;
+    this.gender = initGender;
   }
 
   // メソッドの書き方
@@ -24,10 +27,14 @@ class Person {
   incrementAge() {
     this.age += 1;
   }
+
+  // 関数にprivate修飾子をつけることでクラス外からアクセスできなくすることも可能
+  private incrementAge1() {
+    this.age += 1;
+  }
 }
 // インスタンスの生成。
 const tom = new Person("Tom", 40);
-console.log(tom);
 
 // メソッドを使用する方法
 tom.greeting();
