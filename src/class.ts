@@ -3,10 +3,12 @@ class Person {
   // 何も修飾子を書いていない場合は、public修飾子が与えられている。明示的に与えてもok
   public gender: string;
   name: string;
-  // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
-  private age: number;
+  // protected修飾子を与えると継承先でも使用することができる。しかしクラス外からアクセスできなくなる。
+  // privateとpublicの間のものと捉えること。
+  protected age: number;
   // fieldに対してreadonly修飾子を与えることも可能
   readonly id: number = 1;
+  // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
   private readonly email: string = 'test.com';
 
   // constructor関数を使用することで初期値を設定することができる。
@@ -78,5 +80,13 @@ console.log(Tim);
 
 // クラスの継承には、extends 継承したいクラス名で継承できる。
 class Teacher extends Person {
+  constructor(name: string, age: number, gender: string, public subject: string) {
+    // 継承元クラスでさらに初期化を行いたい場合はsuperをつけてまず元々のデータを初期化する必要がある
+    super(name, age, gender);
+  }
+  greeting(this: Teacher) {
+    console.log(`Hello My Name Is ${this.name} I am ${this.age} years old. I teach ${this.subject}`);
+  }
 }
-const teacher = new Teacher("Dom", 30, "men");
+const teacher = new Teacher("Dom", 30, "men", "Math");
+teacher.greeting();

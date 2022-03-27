@@ -5,6 +5,7 @@ class Person {
     constructor(initName, initAge, initGender) {
         // fieldに対してreadonly修飾子を与えることも可能
         this.id = 1;
+        // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
         this.email = 'test.com';
         this.name = initName;
         this.age = initAge;
@@ -65,5 +66,14 @@ Tim.incrementAge();
 console.log(Tim);
 // クラスの継承には、extends 継承したいクラス名で継承できる。
 class Teacher extends Person {
+    constructor(name, age, gender, subject) {
+        // 継承元クラスでさらに初期化を行いたい場合はsuperをつけてまず元々のデータを初期化する必要がある
+        super(name, age, gender);
+        this.subject = subject;
+    }
+    greeting() {
+        console.log(`Hello My Name Is ${this.name} I am ${this.age} years old. I teach ${this.subject}`);
+    }
 }
-const teacher = new Teacher("Dom", 30, "men");
+const teacher = new Teacher("Dom", 30, "men", "Math");
+teacher.greeting();
