@@ -66,10 +66,17 @@ Tim.incrementAge();
 console.log(Tim);
 // クラスの継承には、extends 継承したいクラス名で継承できる。
 class Teacher extends Person {
-    constructor(name, age, gender, subject) {
+    constructor(name, age, gender, _subject) {
         // 継承元クラスでさらに初期化を行いたい場合はsuperをつけてまず元々のデータを初期化する必要がある
         super(name, age, gender);
-        this.subject = subject;
+        this._subject = _subject;
+    }
+    // getterの使用方法
+    get subject() {
+        if (!this._subject) {
+            throw new Error('There is no subject.');
+        }
+        return this._subject;
     }
     greeting() {
         console.log(`Hello My Name Is ${this.name} I am ${this.age} years old. I teach ${this.subject}`);
@@ -77,3 +84,4 @@ class Teacher extends Person {
 }
 const teacher = new Teacher("Dom", 30, "men", "Math");
 teacher.greeting();
+console.log(teacher.subject);
