@@ -78,10 +78,18 @@ class Teacher extends Person {
         }
         return this._subject;
     }
+    set subject(value) {
+        if (!value) {
+            throw new Error('There is no subject.');
+        }
+        this._subject = value;
+    }
     greeting() {
         console.log(`Hello My Name Is ${this.name} I am ${this.age} years old. I teach ${this.subject}`);
     }
 }
 const teacher = new Teacher("Dom", 30, "men", "Math");
+// setterを呼び出すとき
+teacher.subject = 'Music';
 teacher.greeting();
 console.log(teacher.subject);

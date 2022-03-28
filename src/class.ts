@@ -81,11 +81,19 @@ console.log(Tim);
 // クラスの継承には、extends 継承したいクラス名で継承できる。
 class Teacher extends Person {
   // getterの使用方法
-  get subject() {
+  get subject(): string {
     if (!this._subject) {
       throw new Error('There is no subject.')
     }
     return this._subject;
+  }
+
+  // setter
+  set subject(value) {
+    if (!value) {
+      throw new Error('There is no subject.')
+    }
+    this._subject = value;
   }
   constructor(name: string, age: number, gender: string, private _subject: string) {
     // 継承元クラスでさらに初期化を行いたい場合はsuperをつけてまず元々のデータを初期化する必要がある
@@ -96,5 +104,9 @@ class Teacher extends Person {
   }
 }
 const teacher = new Teacher("Dom", 30, "men", "Math");
+
+// setterを呼び出すとき
+teacher.subject = 'Music';
+
 teacher.greeting();
 console.log(teacher.subject);
