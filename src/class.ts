@@ -126,3 +126,30 @@ console.log(teacher.subject);
 Math.random();
 console.log(Person.species);
 console.log(Person.isAdult(20))
+
+// abstractクラス
+// abstractクラスはインスタンスを生成することはできない。
+abstract class PersonAbstract {
+  name: string;
+  constructor(initName: string) {
+    this.name = initName;
+  }
+
+  greeting(this: PersonAbstract) {
+    console.log(`Hello My Name Is ${this.name}`);
+    this.explainJob();
+  }
+
+  // 継承先クラス内にあるメソッドを継承元クラスで実行したい時はabstractを使用する
+  // abstract使用時はclassをabstract(抽象化)にする必要がある
+  abstract explainJob(): void;
+}
+
+class Dancer extends PersonAbstract {
+  explainJob() {
+    console.log('I am a dancer and I like HipHop')
+  }
+}
+
+const dancer = new Dancer("Michel");
+dancer.greeting();
