@@ -11,6 +11,14 @@ class Person {
   // フィールドにprivate修飾子をつけることでクラス以外からアクセスできなくすることができる。
   private readonly email: string = 'test.com';
 
+  // staticはthisを使用することができない。
+  static species = 'Homo';
+  static isAdult(age: number) {
+    // if文は下記のように書くこともできる
+    if (age > 17) return true;
+    return false;
+  }
+
   // constructor関数を使用することで初期値を設定することができる。
   constructor(initName: string, initAge: number, initGender: string) {
     this.name = initName;
@@ -19,8 +27,11 @@ class Person {
     // constructor: 初期化
     // readonly修飾子を与えているものはconstructor関数内では書き換えできる。constructor外では不可
     this.id = 2;
+
+    // staticの初期値を設定したい場合
+    Person.isAdult(20);
   }
- 
+
   // メソッドの書き方
   // thisにも型をつけることができる。すると呼び出し先でも型チェックが行われる。
   greeting(this: {name: string}) {
@@ -110,3 +121,8 @@ teacher.subject = 'Music';
 
 teacher.greeting();
 console.log(teacher.subject);
+
+// static
+Math.random();
+console.log(Person.species);
+console.log(Person.isAdult(20))

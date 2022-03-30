@@ -13,6 +13,14 @@ class Person {
         // constructor: 初期化
         // readonly修飾子を与えているものはconstructor関数内では書き換えできる。constructor外では不可
         this.id = 2;
+        // staticの初期値を設定したい場合
+        Person.isAdult(20);
+    }
+    static isAdult(age) {
+        // if文は下記のように書くこともできる
+        if (age > 17)
+            return true;
+        return false;
     }
     // メソッドの書き方
     // thisにも型をつけることができる。すると呼び出し先でも型チェックが行われる。
@@ -31,6 +39,8 @@ class Person {
         this.age += 1;
     }
 }
+// staticはthisを使用することができない。
+Person.species = 'Homo';
 // インスタンスの生成。
 const tom = new Person("Tom", 40, 'men');
 // メソッドを使用する方法
@@ -78,6 +88,7 @@ class Teacher extends Person {
         }
         return this._subject;
     }
+    // setter
     set subject(value) {
         if (!value) {
             throw new Error('There is no subject.');
@@ -93,3 +104,7 @@ const teacher = new Teacher("Dom", 30, "men", "Math");
 teacher.subject = 'Music';
 teacher.greeting();
 console.log(teacher.subject);
+// static
+Math.random();
+console.log(Person.species);
+console.log(Person.isAdult(20));
