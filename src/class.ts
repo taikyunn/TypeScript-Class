@@ -153,3 +153,23 @@ class Dancer extends PersonAbstract {
 
 const dancer = new Dancer("Michel");
 dancer.greeting();
+
+// シングルトンパターン:クラスからインスタンスを一つしか作ることができないもの。一つのデザインパターンのこと
+class Singleton {
+  private static instance: Singleton;
+  name: string;
+
+  // シングルトンパターン作成の場合はconstructor関数にprivate修飾子をつける
+  private constructor(initName: string) {
+    this.name = initName;
+  }
+  static getInstance() {
+    Singleton.instance = new Singleton('Quill');
+    return  
+  }
+}
+// constructorをprivateで作成するとクラス外でインスタンスを作成できなくなる
+// const singleton = new Singleton('Quill');
+
+// staticを使用してドットを使うことでインスタンスを生成できるようになる
+const singleton = Singleton.getInstance();
