@@ -165,7 +165,7 @@ class Singleton {
   }
   static getInstance() {
     Singleton.instance = new Singleton('Quill');
-    return  
+    return Singleton.instance;
   }
 }
 // constructorをprivateで作成するとクラス外でインスタンスを作成できなくなる
@@ -173,3 +173,5 @@ class Singleton {
 
 // staticを使用してドットを使うことでインスタンスを生成できるようになる
 const singleton = Singleton.getInstance();
+const singleton2 = Singleton.getInstance();
+console.log(singleton,singleton2)
